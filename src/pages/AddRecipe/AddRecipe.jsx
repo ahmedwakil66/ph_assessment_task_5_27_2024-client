@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { categories } from '../../constants/constants';
 
 
 const AddRecipe = () => {
@@ -24,12 +25,38 @@ const AddRecipe = () => {
             const file = form.fileInput.files[0];
 
             // check all fields necessary
-            if(!name || !description || !youtube_embed || !country || !ingredients || !cooking_method || !category || !file) throw new Error('All fields are necessary!');
+            if (!name || !description || !youtube_embed || !country || !ingredients || !cooking_method || !category || !file) throw new Error('All fields are necessary!');
 
-            // upload image to imageBB
+            // construct new FormData object
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('description', description);
+            formData.append('youtube_embed', youtube_embed);
+            formData.append('country', country);
+            formData.append('ingredients', JSON.stringify(ingredients.split(','))); // Convert array to JSON string
+            formData.append('cooking_method', cooking_method);
+            formData.append('category', category);
+            formData.append('file', file);
 
-            console.log({name, description, youtube_embed, country, ingredients, cooking_method, category, file});
-            
+            // upload to the server
+            const response = await fetch(`${import.meta.env.VITE_Api_BaseUrl}/recipes/add`, {
+                method: 'POST',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('simply-recipes-token')}`,
+                },
+                body: formData,
+            });
+
+            // show a response
+            const result = await response.json();
+            console.log('add recipe result: ', result);
+            if(result.success) {
+                toast.success('Recipe added successfully!');
+                return;
+            }
+
+            throw new Error(`Error occurred while adding recipe. ${result?.message}`)
+
         } catch (error) {
             toast.error(error.message);
 
@@ -103,8 +130,12 @@ const AddRecipe = () => {
                     </div>
                     <select name='category' defaultValue='' className="select select-bordered w-full">
                         <option value='' disabled>Select one</option>
-                        <option>Han Solo</option>
-                        <option>Greedo</option>
+                        {categories.map((item) => (
+                            <option key={item.category} value={item.category}>
+                                {item.category.slice(0, 1).toUpperCase()}{item.category.slice(1)}
+                            </option>
+                        ))}
+                        <option value='other'>Other</option>
                     </select>
                 </label>
 
