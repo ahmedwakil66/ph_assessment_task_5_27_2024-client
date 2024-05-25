@@ -40,6 +40,7 @@ const Navbar = () => {
                             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                 <li><p>Available coins: <strong>{user.coin}</strong></p></li>
                                 <li><p>Account: {user.email}</p></li>
+                                <li><Link to={'/buy-coin'} className='btn'>Add more coin</Link></li>
                                 <li><button onClick={logOut} className='btn btn-neutral mt-2'>Log Out</button></li>
                             </ul>
                         </div>

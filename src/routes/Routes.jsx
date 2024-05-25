@@ -13,7 +13,8 @@ const CategoryFoods = React.lazy(() => import('../pages/CategoryFoods/CategoryFo
 const Recipe = React.lazy(() => import('../pages/Recipe/Recipe'));
 const ErrorPage = React.lazy(() => import('../pages/ErrorPage/ErrorPage'));
 const ChefRecipes = React.lazy(() => import('../pages/ChefRecipes/ChefRecipes'));
-const Login = React.lazy(() => import('../pages/Login/Login'));
+const AddRecipe = React.lazy(() => import('../pages/AddRecipe/AddRecipe'));
+const BuyCoin = React.lazy(() => import('../pages/BuyCoin/BuyCoin'));
 
 const baseUrl = import.meta.env.VITE_Api_BaseUrl;
 
@@ -34,17 +35,15 @@ const router = createBrowserRouter([
             {
                 path: '/chef-recipes/:chefId',
                 element: <PrivateRoute><MySuspense><ChefRecipes /></MySuspense></PrivateRoute>,
-                loader: ({ params }) => fetch(`${baseUrl}/simply-recipes/chef/${params.chefId}`)
-                // loader: ({ params }) => fetch(`http://localhost:3000/simply-recipes/chef/${params.chefId}`, {
-                //     method: 'GET',
-                //     headers: {
-                //         authorization: `Bearer ${localStorage.getItem('simply-recipes-token')}`
-                //     }
-                // })
+                loader: ({ params }) => fetch(`${baseUrl}/simply-recipes/chef/${params.chefId}`),
             },
             {
-                path: '/login',
-                element: <MySuspense><Login /></MySuspense>
+                path: '/buy-coin',
+                element: <MySuspense><BuyCoin /></MySuspense>
+            },
+            {
+                path: '/add-recipe',
+                element: <MySuspense><AddRecipe /></MySuspense>
             },
             {
                 path: '/categories/',
@@ -69,7 +68,12 @@ const router = createBrowserRouter([
                     {
                         path: '/recipes/:recipeId',
                         element: <MySuspense><Recipe /></MySuspense>,
-                        loader: ({ params }) => fetch(`${baseUrl}/simply-recipes/recipes/${params.recipeId}`)
+                        loader: ({ params }) => fetch(`${baseUrl}/recipes/${params.recipeId}`, {
+                            method: 'GET',
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('simply-recipes-token')}`
+                            }
+                        })
                     }
                 ]
             }

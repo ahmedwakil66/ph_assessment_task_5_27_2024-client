@@ -1,14 +1,16 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+
 import './RecipeCard.css';
 import '@smastrom/react-rating/style.css'
+import { useState } from 'react';
 import { Rating } from '@smastrom/react-rating';
 import { heartEmptyIcon, heartIcon } from '../../../../Icons';
 import { toast } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const RecipeCard = ({ recipe }) => {
     const [favorite, setFavorite] = useState(false);
-    const { name, image, description, ingredients, cooking_method, rating } = recipe;
+    const { name, image, description, ingredients, cooking_method, rating, youtube_embed,
+        country, category, purchased_by, creator_email, watch_count } = recipe;
 
     const handleFav = () => {
         toast.success('Added to Favorite!');
@@ -20,24 +22,47 @@ const RecipeCard = ({ recipe }) => {
             <div>
                 <img src={`/${image}`} alt="" />
                 <div className='title-desc'>
-                    <h2 style={{ margin: '10px 0' }}>{name}</h2>
+                    <h2 className='font-semibold my-2'>{name}</h2>
                     <p>{description}</p>
                 </div>
             </div>
 
             <div className='info'>
                 <div>
-                    <h4>Required Ingredients</h4>
+                    <h4 className='font-semibold'>Required Ingredients</h4>
                     <ul>
                         {ingredients?.map((item, ind) => <li key={ind}>{item}</li>)}
                     </ul>
                 </div>
 
                 <div>
-                    <h4>Cooking Method</h4>
+                    <h4 className='font-semibold'>Cooking Method</h4>
                     <div>
                         {cooking_method?.split('\n').map((item, ind) => <p key={ind} style={{ marginBottom: '5px' }}>{item}</p>)}
                     </div>
+                </div>
+            </div>
+
+            <div className='flex flex-col items-center my-4'>
+                <iframe className='w-80 h-48 md:w-[560px] md:h-[315px]' src={`https://www.youtube.com/embed/${youtube_embed || 'dRW3VMfNlaY?si=9vaJQEx3pibQBsjq'}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                <p className='text-sm font-semibold mt-1'>Watch recipe video</p>
+            </div>
+
+            <div className='info'>
+                <div>
+                    <h5 className='font-semibold'>Category</h5>
+                    <p>{category.slice(0, 1).toUpperCase()}{category.slice(1)}</p>
+                    <h5 className='font-semibold mt-2'>Origin</h5>
+                    <p>{country}</p>
+                    <h5 className='font-semibold mt-2'>Crafted by</h5>
+                    <Link to={`mailto:${creator_email}`} className='text-primary'>{creator_email}</Link>
+                </div>
+
+                <div>
+                    <h5 className='font-semibold'>Stats</h5>
+                    <p>{watch_count} views</p>
+                    <h5 className='font-semibold mt-2'>Purchased by</h5>
+                    <p>{purchased_by.length} people</p>
                 </div>
             </div>
 

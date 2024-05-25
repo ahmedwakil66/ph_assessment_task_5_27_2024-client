@@ -13,9 +13,13 @@ const AllRecipes = () => {
     }, [setSecLayTitle, setSecLayTitleMain]);
 
     return (
-        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-            {recipes.map(recipe => <ItemCard item={recipe} key={recipe._id} />)}
-        </div>
+        <>
+
+            <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+                {recipes.map(recipe => <ItemCard item={recipe} key={recipe._id} />)}
+            </div>
+            
+        </>
     );
 };
 

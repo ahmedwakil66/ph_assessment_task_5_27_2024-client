@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const GoogleLoginBtn = ({ children, redirectPath }) => {
-    const { googleLogin } = useContext(AuthContext);
+    const { googleLogin, loading } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleGoogleLogin = async () => {
@@ -43,6 +43,13 @@ const GoogleLoginBtn = ({ children, redirectPath }) => {
                 }
             })
     }
+
+    if (loading) return (
+        <button className='btn btn-login' disabled={loading}>
+            <span className="loading loading-spinner" />
+            Google Login
+        </button>
+    )
 
     if (children) return <span onClick={handleGoogleLogin}>{children}</span>
 
