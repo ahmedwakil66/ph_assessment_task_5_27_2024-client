@@ -1,0 +1,17 @@
+
+.item-card{
+    box-shadow: 0 0 5px antiquewhite;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+.item-card img{
+    width: 100%;
+    border-radius: 7px;
+}
+
+.item-card h3{
+    font-weight: 500;
+    margin-top: 5px;
+    color: black;
+}

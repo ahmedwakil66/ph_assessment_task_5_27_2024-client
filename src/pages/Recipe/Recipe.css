@@ -1,0 +1,15 @@
+
+.who-crafted-cards{
+    display: grid;
+}
+
+
+@media screen and (max-width: 500px) {
+    .recipe .recipe-card .info{
+        flex-direction: column;
+    }
+
+    .who-crafted-cards{
+        justify-items: center;
+    }
+}

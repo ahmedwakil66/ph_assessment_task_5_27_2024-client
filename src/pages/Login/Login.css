@@ -1,0 +1,56 @@
+
+
+.log-reg-form{
+    max-width: 500px;
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.575);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.log-reg-form > div {
+    margin: 1.2rem 0;
+}
+
+.log-reg-title{
+    text-align: center;
+}
+
+.log-reg-form label{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.log-reg-form input{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    outline: transparent;
+    border-radius: 8px;
+    border: 2px solid rgb(24, 176, 214);
+    margin-top: .7rem;
+}
+
+.log-reg-form hr{
+    margin: 3rem 0 0;
+    height: 0px;
+    border: 1px solid rgb(201, 217, 238);
+}
+
+.google-github > button{
+    margin: 3px 0;
+    border-color: rgba(0, 0, 255, 0.575);
+}
+
+.log-reg-container details{
+    background-color: aquamarine;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+.log-reg-container summary {
+    user-select: none;
+    cursor: pointer;
+}

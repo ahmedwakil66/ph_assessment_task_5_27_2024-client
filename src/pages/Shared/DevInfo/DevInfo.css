@@ -1,0 +1,49 @@
+.resume-li-step {
+    @apply relative pl-6 max-w-xl transition-all
+}
+
+.resume-li-step::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 10px;
+    height: 100%;
+    border-left: 1px solid;
+}
+
+.resume-li-step::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: rgb(107 114 128);
+    border-radius: 50%;
+    left: 0;
+    top: 5px;
+    transition: .3s all;
+}
+
+.resume-ul :last-child::before {
+    height: calc(100% - 16px);
+}
+
+.resume-li-step:hover.resume-li-step::after {
+    @apply bg-primary
+}
+
+.resume-li-step:hover>p {
+    @apply text-primary
+}
+
+.resume-li-step :first-child {
+    transition: .3s all;
+}
+
+.expertise.card {
+    transition: .3s all;
+}
+
+.expertise.card:hover {
+    border-color: rgba(40, 233, 140, .7);
+}
+

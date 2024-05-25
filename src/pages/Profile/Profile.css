@@ -1,0 +1,8 @@
+
+.profile-header{
+    text-align: center;
+}
+
+.profile-header > p {
+    margin: 5px;
+}

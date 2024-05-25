@@ -1,0 +1,56 @@
+
+.chef-card{
+    max-width: 320px;
+}
+
+.chef-card .body{
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.chef-card .banner{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.chef-card .description{
+    flex: 70%;
+    border-right: 1px solid;
+}
+
+.chef-card .likes{
+    flex: 30%;
+    font-size: 1.5rem;
+    display: flex;
+    gap: 5px;
+    justify-content: end;
+}
+
+.chef-card .title{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.chef-card p {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+.chef-card .body-wrapper button{
+    width: 100%;
+}
+
+.disabled-card{
+    opacity: .5;
+    user-select: none;
+}
+
+.cursor-auto{
+    cursor: auto;
+}
+
+.retired-text{
+    text-transform: uppercase;
+    color: brown;
+}
