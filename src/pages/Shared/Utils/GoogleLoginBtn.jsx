@@ -32,7 +32,7 @@ const GoogleLoginBtn = ({ children, redirectPath }) => {
             .then(() => {
                 toast.success('Login successful!');
                 if (redirectPath) {
-                    navigate(redirectPath);
+                    setTimeout(() => navigate(redirectPath), 1500)
                 }
             })
             .catch(error => {
@@ -43,6 +43,8 @@ const GoogleLoginBtn = ({ children, redirectPath }) => {
                 }
             })
     }
+
+    if (children && loading) return <span>{children}</span>
 
     if (loading) return (
         <button className='btn btn-login' disabled={loading}>

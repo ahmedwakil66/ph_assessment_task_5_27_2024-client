@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { categories } from '../../constants/constants';
+import { categories, countries } from '../../constants/constants';
 
 
 const AddRecipe = () => {
@@ -14,7 +14,7 @@ const AddRecipe = () => {
         try {
             setLoading(true);
 
-            // get form fields
+            // get form fields & values
             const name = form.name.value;
             const description = form.description.value;
             const youtube_embed = form.youtube_embed.value;
@@ -49,8 +49,7 @@ const AddRecipe = () => {
 
             // show a response
             const result = await response.json();
-            console.log('add recipe result: ', result);
-            if(result.success) {
+            if (result.success) {
                 toast.success('Recipe added successfully!');
                 return;
             }
@@ -99,14 +98,6 @@ const AddRecipe = () => {
                     <input name='youtube_embed' type="text" placeholder="Type here" className="input input-bordered w-full" />
                 </label>
 
-                {/* origin country */}
-                <label className="form-control w-full ">
-                    <div className="label">
-                        <span className="label-text">Recipe country</span>
-                    </div>
-                    <input name='country' type="text" placeholder="Type here" className="input input-bordered w-full" />
-                </label>
-
                 {/* recipe ingredients */}
                 <label className="form-control w-full ">
                     <div className="label">
@@ -118,9 +109,23 @@ const AddRecipe = () => {
                 {/* recipe description / cooking method */}
                 <label className="form-control w-full ">
                     <div className="label">
-                        <span className="label-text">Recipe description / cooking method</span>
+                        <span className="label-text">Recipe details / cooking method</span>
                     </div>
                     <textarea name='cooking_method' className="textarea textarea-bordered h-24" placeholder="Type here" />
+                </label>
+
+                {/* origin country */}
+                <label className="form-control w-full ">
+                    <div className="label">
+                        <span className="label-text">Recipe origin</span>
+                    </div>
+                    <select name='country' defaultValue='Bangladesh' className="select select-bordered w-full">
+                        {countries.map((country) => (
+                            <option key={country} value={country}>
+                                {country}
+                            </option>
+                        ))}
+                    </select>
                 </label>
 
                 {/* recipe category */}

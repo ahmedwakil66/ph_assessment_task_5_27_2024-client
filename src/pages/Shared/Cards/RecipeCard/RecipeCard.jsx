@@ -1,21 +1,13 @@
 
 import './RecipeCard.css';
 import '@smastrom/react-rating/style.css'
-import { useState } from 'react';
 import { Rating } from '@smastrom/react-rating';
-import { heartEmptyIcon, heartIcon } from '../../../../Icons';
-import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import RecipeCardReaction from './RecipeCardReaction';
 
 const RecipeCard = ({ recipe }) => {
-    const [favorite, setFavorite] = useState(false);
-    const { name, image, description, ingredients, cooking_method, rating, youtube_embed,
-        country, category, purchased_by, creator_email, watch_count } = recipe;
-
-    const handleFav = () => {
-        toast.success('Added to Favorite!');
-        setFavorite(true);
-    }
+    const { _id, name, image, description, ingredients, cooking_method, rating, youtube_embed,
+        country, category, purchased_by, reacted_by, creator_email, watch_count } = recipe;
 
     return (
         <div className='recipe-card'>
@@ -73,10 +65,7 @@ const RecipeCard = ({ recipe }) => {
                     readOnly
                 >
                 </Rating>
-                <button onClick={handleFav} className={`mark-fav-btn ${favorite && 'btn-disabled brown'}`} disabled={favorite}>
-                    {!favorite && <>{heartEmptyIcon} <span>Mark Favorite</span></>}
-                    {favorite && <>{heartIcon}</>}
-                </button>
+               <RecipeCardReaction reacted_by={reacted_by} recipeId={_id}/>
             </div>
         </div>
     );

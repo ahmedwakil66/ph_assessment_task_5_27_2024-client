@@ -1,16 +1,16 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from 'react';
 import './Chefs.css';
+import { useEffect, useState } from 'react';
 import ChefCard from '../Cards/ChefCard/ChefCard';
 import { toast } from 'react-hot-toast';
 import Spinner from '../LoaderSpinner/Spinner';
+import { baseUrl } from '../../../routes/Routes';
 
 const Chefs = () => {
     const [chefsData, setChefsData] = useState([]);
     const[isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://craftawesome-us-1.onrender.com/simply-recipes/chefs')
+        fetch(`${baseUrl}/simply-recipes/chefs`)
         .then(res => res.json())
         .then(data => {
             setChefsData(data);

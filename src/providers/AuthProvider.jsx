@@ -46,6 +46,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser && currentUser.email) {
+                setLoading(true);
                 const loggedInUser = {
                     email: currentUser.email,
                     photoURL: currentUser.photoURL,

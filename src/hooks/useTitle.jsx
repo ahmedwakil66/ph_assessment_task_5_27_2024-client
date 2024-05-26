@@ -13,4 +13,4 @@ const useTitleHome = () => {
 }
 
 export default useTitle;
-export {useTitleHome};
+export { useTitleHome };

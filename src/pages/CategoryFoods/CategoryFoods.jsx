@@ -6,7 +6,7 @@ import ItemCard from '../Shared/Cards/ItemCard/ItemCard';
 import useTitle from '../../hooks/useTitle';
 import { SecondLayoutContext } from '../../providers/SecondLayoutProvider';
 
-const CategoryFoods = () => { console.log('CategoryFoods')
+const CategoryFoods = () => {
     const {setSecLayTitle, setSecLayTitleMain} = useContext(SecondLayoutContext);
     const categoryItems = useLoaderData();
     const name = useParams();

@@ -34,7 +34,7 @@ const ItemCard = memo(function ItemCard({ item }) {
 
         if (user.coin < 10) {
             toast("You don't have enough coin", { icon: '❔' });
-            return navigate(`/purchase-coin`);
+            return navigate(`/buy-coin`);
         }
 
         setOpenPurchaseModal(true);
