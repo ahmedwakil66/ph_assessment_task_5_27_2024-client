@@ -56,7 +56,7 @@ const ItemCard = memo(function ItemCard({ item }) {
             const data = await response.json();
             if (data.success) {
                 // update user coin locally
-                setUser(prev => ({ ...prev, coin: prev.coin - recipe_price}))
+                setUser(prev => ({ ...prev, coin: prev.coin - recipe_price }))
                 // close purchase modal & redirect upon successful purchase
                 setOpenPurchaseModal(false);
                 navigate(`/recipes/${_id}`);
@@ -80,7 +80,10 @@ const ItemCard = memo(function ItemCard({ item }) {
         <div className='item-card relative'>
 
             {/* Card visible parts */}
-            <img src={image.startsWith('recipes_img/') ? `/${image}` : image} alt={name} title={name} />
+            <img
+                className='min-h-28'
+                src={image.startsWith('recipes_img/') ? `/${image}` : image} alt={name} title={name}
+            />
             <h2 className='text-lg font-semibold my-2'>{name}</h2>
             <p>From - {country}</p>
             <p>By - <Link to={'mailto:' + creator_email}>{creator_email}</Link></p>
