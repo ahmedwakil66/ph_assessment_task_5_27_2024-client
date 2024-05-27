@@ -12,7 +12,7 @@ const RecipeCard = ({ recipe }) => {
     return (
         <div className='recipe-card'>
             <div>
-                <img src={`/${image}`} alt="" />
+                <img src={image.startsWith('recipes_img/') ? `/${image}` : image} alt="" />
                 <div className='title-desc'>
                     <h2 className='font-semibold my-2'>{name}</h2>
                     <p>{description}</p>

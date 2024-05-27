@@ -82,7 +82,8 @@ const ItemCard = memo(function ItemCard({ item }) {
             {/* Card visible parts */}
             <img
                 className='min-h-28'
-                src={image.startsWith('recipes_img/') ? `/${image}` : image} alt={name} title={name}
+                src={image.startsWith('recipes_img/') ? `/${image}` : image} 
+                alt={name} title={name}
             />
             <h2 className='text-lg font-semibold my-2'>{name}</h2>
             <p>From - {country}</p>
